@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Memory Game</title>
+  <!-- Συνδέουμε το CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- Intro Modal -->
+<div id="intro-modal" class="intro-modal">
+  <div class="intro-content">
+    <h2>‧₊˚🎄✩ ₊˚🦌⊹♡ LonGMa</h2>
+    <p><b style="color: blue; font-family: 'Courier New';">Εργαστηριο χειροποίητων δημιουργιών</b></p>
+     <small style="display:block; margin-top:12px; opacity:.8; font-family: Comic Sans MS "> amigurumi ,κόσμημα </small>
+     <small style="display:block; margin-top:12px; opacity:.8; font-family: Comic Sans MS ">
+      Τα amigurumi συνοδεύονται προαιρετικα από ορειχάλκινο ταμπελακι στο οποίο αποτυπώνουμε με σφραγιδες το όνομα ή κάποιο μικρό μήνυμα σας
+    </small>
+     <p><u><b>Επέλεξε τον βαθμό δυσκολίας</b></u></p>
+    <div class="diff-buttons">
+      <button class="diff-btn" data-pairs="4" style="background-color: green; color: white;">Εύκολο</button>
+      <button class="diff-btn" data-pairs="6"style="background-color: orange; color: white;">Μεσαίο</button>
+      <button class="diff-btn" data-pairs="10"style="background-color: red; color: white;">Δύσκολο</button>
+    </div>
+    <small style="display:block; margin-top:12px; opacity:.8;">
+      <u><b> και παίξε με τα Amigurumi ! </u></b>
+    </small>
+<small style="display:block; margin-top:12px; opacity:.8;font-family: 'Courier New';">
+  <i> κάνε  <span style="color:#ff4444;"><b>κλικ</b></span> στην καρδουλα για να βρεις τους συνδέσμους μας</i>
+    </small>
+    <!-- Καρδιά για άνοιγμα επαγγελματικής κάρτας -->
+    <div id="social-heart" class="heart-fab" title="Επαφές">💗</div><span class="heart-label"><span class="text">Κλικ</span>
+  </div>
+</div>
+
+<!-- Scene / Table / Game Wrapper -->
+<div class="scene">
+  <div class="table-image"></div>
+  <div class="game-wrapper">
+    <div class="game-board"></div>
+  </div>
+</div>
+
+<div class="snow"></div>
+
+<!-- Countdown -->
+<div id="countdown"></div>
+
+<!-- Restart Button -->
+<button class="restart-btn" id="restart-btn">↻ Restart</button>
+
+<!-- Social Card Modal -->
+<div id="social-card-modal" class="social-modal" role="dialog" aria-hidden="true">
+  <div class="social-card" aria-live="polite">
+  <div style="display:flex; justify-content:center; align-items:center; margin-top:12px; opacity:.8; font-family: Comic Sans MS;">
+  <b>100% Χειροποίητες δημιουργίες</b>
+</div>
+    <img id="social-logo" src="https://i.postimg.cc/L4bPnyfG/www-cfffopy.jpg" class="social-logo" alt="LongMa Logo", >
+    <div id="social-links-container" class="social-links"></div>
+    <button class="close-social" id="close-social" aria-label="Κλείσιμο επαφών">❌ </button>
+      </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Συνδέουμε το JS -->
+  <script src="script.js"></script>
+</body>
+</html>
+
+

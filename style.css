@@ -1,0 +1,389 @@
+/* ===== GLOBAL ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin:0; padding:0; font-family: Arial, sans-serif; }
+body { background:#e7e3dd; overflow:hidden; position:relative; }
+
+
+/* ===== RESTART BUTTON ===== */
+.restart-btn {
+  position: fixed;
+  top: 12px;
+  right: 5px;
+  z-index: 5000;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(4px);
+  border-radius:10px;
+  padding:8px 14px;
+  cursor:pointer;
+  font-size:12px;
+  border:1px solid #ddd;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+.restart-btn:hover { background:white; }
+@media (max-width: 450px) {
+  .restart-btn {
+    right: 12px;
+    top: 12px;
+    transform: scale(0.85); /* μικραίνει λίγο ώστε να μη κόβεται */
+  }
+}
+
+
+/* ===== SCENE ===== */
+.scene {
+  position: relative; /* relative για να κρατάει όλα τα layers */
+  width: min(92vw, 980px);
+  height: min(92vh, 920px);
+  margin: 0 auto; /* κεντράρει οριζόντια */
+  display: flex;
+  flex-direction: column; /* σωστή στοίχιση των στοιχείων */
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Background image */
+.table-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  max-width: 1200px;
+  height: 80%;
+  max-height: 820px;
+  background-image: url("https://i.postimg.cc/d0Q4k1Vf/christougenna.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 18px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.28);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Game wrapper */
+.game-wrapper {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 720px;
+  pointer-events: auto;
+  padding: 26px;
+}
+
+/* Board */
+.game-board {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 720px;
+  pointer-events: auto;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+}
+
+
+/* ===== CARDS ===== */
+.card {
+  width:100%;
+  aspect-ratio:1/1;
+  perspective:800px;
+  cursor:pointer;
+  z-index:6;
+}
+.card-inner {
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.6s ease;
+  transform-style:preserve-3d;
+  border-radius:12px;
+}
+.card.flipped .card-inner { transform:rotateY(180deg); }
+
+.card-front, .card-back {
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:12px;
+  backface-visibility:hidden;
+  box-shadow:0 6px 12px rgba(0,0,0,0.18), inset 0 3px 6px rgba(255,255,255,0.35);
+  transition:transform 0.6s ease, box-shadow 0.3s ease;
+  background-color:#fff;
+}
+
+.card-front {
+  border:2px solid #ddd;
+  background:white url(https://i.postimg.cc/L4bPnyfG/www-cfffopy.jpg) center/contain no-repeat;
+}
+
+.card-back {
+  transform:rotateY(180deg);
+  border:2px solid #ddd;
+  background-size:cover !important;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+
+/* ===== EFFECTS ===== */
+.shake { animation:shakeAnim 0.4s ease-in-out; }
+@keyframes shakeAnim {
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-5px);}
+  50%{transform:translateX(5px);}
+  75%{transform:translateX(-3px);}
+}
+
+.zoom-center {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(1);
+  opacity:0;
+  z-index:2000;
+  width:260px;
+  height:260px;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
+  animation:zoomShow 3s ease-in-out forwards;
+}
+.zoom-center img { width:100%; height:100%; object-fit:contain; }
+
+@keyframes zoomShow {
+  0%{transform:translate(-50%,-50%) scale(0.8);opacity:0;}
+  10%{opacity:1;}
+  50%{transform:translate(-50%,-50%) scale(1.28);opacity:1;}
+  90%{opacity:1;}
+  100%{transform:translate(-50%,-50%) scale(0.8);opacity:0;}
+}
+
+@keyframes popHeart {
+  0%{transform:translate(-50%,-50%) scale(0);opacity:0;}
+  30%{transform:translate(-50%,-50%) scale(1.3);opacity:1;}
+  70%{transform:translate(-50%,-50%) scale(1);opacity:1;}
+  100%{transform:translate(-50%,-50%) scale(0.5);opacity:0;}
+}
+
+.matched { pointer-events:none; opacity:0.85; transition:transform 0.4s ease; }
+.matched .card-inner { transform:rotateY(180deg) !important; }
+
+@keyframes jumpDance {
+  0%{transform:translateY(0);}
+  30%{transform:translateY(-18px);}
+  60%{transform:translateY(0);}
+  80%{transform:translateY(-8px);}
+  100%{transform:translateY(0);}
+}
+.win-dance {
+  animation: jumpDance 0.55s ease-in-out 7; /* τρέχει 4 φορές */
+}
+
+
+/* ===== INTRO MODAL ===== */
+.intro-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4000;
+  background: rgba(0,0,0,0.45);
+  padding: 20px;
+}
+.intro-content {
+  width: 96%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.diff-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.diff-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.diff-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 14px rgba(0,0,0,0.25);
+}
+
+/* ===== HEART BUTTON INSIDE MODAL ===== */
+#intro-modal .heart-fab {
+  position: static;
+  margin: 16px auto 0 auto;
+  display: block;
+  font-size: 20px;
+  animation: heartPulse 1.4s infinite ease-in-out;
+  cursor: pointer;
+}
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.heart-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+.heart-label {
+  font-size: 16px;
+  color: #ff4b6e;
+  font-weight: bold;
+}
+
+
+/* ===== COUNTDOWN ===== */
+#countdown {
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:18px;
+  font-weight:bold;
+  text-align:center;
+  z-index:500;
+  color:#1f8a00;
+}
+.bounce-clock { display:inline-block; animation:bounce-slow 1s infinite; font-size:1.8rem; }
+@keyframes bounce-slow { 0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)} }
+.bounce-fast { animation:bounce-fast 0.3s infinite; }
+@keyframes bounce-fast { 0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)} }
+
+
+/* ===== SNOW ===== */
+.snow { position:fixed; inset:0; pointer-events:none; z-index:3000; overflow:hidden; }
+.snow .flake {
+  position:absolute;
+  top:-5%;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:white;
+  opacity:0.95;
+  filter:blur(0.6px);
+  animation-name:snowFall;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
+@keyframes snowFall {
+  0%{transform:translateY(-10vh) translateX(0) rotate(0deg);opacity:0;}
+  10%{opacity:0.9;}
+  100%{transform:translateY(120vh) translateX(30px) rotate(360deg);opacity:0.9;}
+}
+
+
+/* ===== SOCIAL MODAL ===== */
+.social-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 12500;
+  pointer-events: auto;
+}
+
+/* ===== SOCIAL CARD FLIP ===== */
+.social-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ECEFF1;
+   background-image: url("https://i.postimg.cc/PrNVcQN3/xristoygenna.jpg"); /* εικόνα */
+  background-size: contain;   /* ή cover ανάλογα τι θέλεις */
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 22px;
+  border-radius: 14px;
+  text-align: left;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+  transition: transform 0.6s ease;
+}
+
+.social-card.show { transform: rotateY(0deg); }
+
+/* Social links */
+.social-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-direction: column;
+  gap: 12px;
+}
+.social-item { display: flex; align-items: center; gap: 10px; }
+.social-icon { font-size: 28px; width: 36px; display:flex; justify-content:center; }
+.social-text { font-size: 16px; color: #333; text-decoration: none; }
+.social-text:hover { color: #e91e63; text-decoration: underline; }
+
+/* Logo */
+.social-logo {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto 16px auto;
+  object-fit: contain;
+}
+
+.close-social {
+  margin-top: 16px;
+  padding: 8px 14px;
+  border: none;
+  background: green;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.close-social:hover { background: #111; }
+
+
+/* ===== FLOATING HEARTS ===== */
+.heart {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 48px;
+  opacity: 0;
+  animation: popHeart 1.3s ease-out forwards;
+  pointer-events: none;
+  z-index: 9000;
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:720px) {
+  .table-image { width: 120%; height: 70%; left: 50%; top: 54%; }
+  .game-wrapper { padding:12px; }
+}
+@media (max-width: 700px) {
+  .game-wrapper { width: 100% !important; padding: 6px; }
+  .scene { width: 100vw !important; height: 100vh !important; }
+  .table-image { width: 115%; height: 60%; }
+  .game-board { grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 6px; }
+}
+@media (max-width: 420px) {
+  .game-board { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
+}
