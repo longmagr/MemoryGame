@@ -199,14 +199,20 @@ body { background:#e7e3dd; overflow:hidden; position:relative; }
 }
 .intro-content {
   width: 96%;
-  max-width: 420px;
+  max-width: 360px;
+  max-height: 97vh; /* να μην ξεπερνά το 80% της οθόνης */
   background: #fff;
   border-radius: 14px;
   padding: 20px 22px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.25);
   text-align: center;
-}
+margin: 4px 0;
+ line-height: 1;
+ overflow-y: auto; /* κάνει scroll ΜΕΣΑ στην κάρτα */}
 
+.intro-content h2,
+.intro-content h3 {
+  margin: 8px 0;}
 .diff-buttons {
   display: flex;
   gap: 10px;
@@ -309,9 +315,10 @@ body { background:#e7e3dd; overflow:hidden; position:relative; }
 /* ===== SOCIAL CARD FLIP ===== */
 .social-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 360px;
+  max-height: 97vh; /* να μην ξεπερνά το 80% της οθόνης */
   background: #ECEFF1;
-   background-image: url("https://i.postimg.cc/PrNVcQN3/xristoygenna.jpg"); /* εικόνα */
+  /* background-image: url("https://i.postimg.cc/PrNVcQN3/xristoygenna.jpg"); /** εικόνα */
   background-size: contain;   /* ή cover ανάλογα τι θέλεις */
   background-position: center;
   background-repeat: no-repeat;
