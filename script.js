@@ -231,7 +231,7 @@ function showWinMessage() {
     { name: "@longmagr", icon: "https://i.postimg.cc/x8LHnLvv/in1.png", url: "https://instagram.com/longmagr",color: "black", weight: "bold",column: "right" },
    { name: "@longmagr", icon: "https://i.postimg.cc/m2XdqsrZ/tiki.png", url: "https://www.tiktok.com/@longmagr",color: "black",column: "left"},
    { name: "Taplink", icon: "🌍", url: "https://taplink.cc/longma",color: "blue", weight: "bold",column: "right"},
-      {name:"Μαχάωνος 4, Καλαμάτα",color: "black", icon: "🏠" , font: "Comic Sans MS",url: "https://www.google.com/maps/place/LonGMa/@37.0409371,22.1169169,17z/data=!3m1!4b1!4m6!3m5!1s0x1361b19ff6cefa0d:0xb0c0fd860aa8d5b9!8m2!3d37.0409371!4d22.1169169!16s%2Fg%2F11kjyf0m5z?hl=el&entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D",}
+      {name:"Μαχάωνος 4, Καλαμάτα",color: "black", icon: "🏠" , font: "Comic Sans MS",url: "https://www.google.com/maps/place//@37.0410012,22.1168228,20.5z?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D",}
   ];
 
   // Δημιουργία DOM items
