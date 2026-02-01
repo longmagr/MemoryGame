@@ -53,7 +53,7 @@ body { background:#e7e3dd; overflow:hidden; position:relative; }
   max-width: 1200px;
   height: 80%;
   max-height: 820px;
-  background-image: url("https://i.postimg.cc/d0Q4k1Vf/christougenna.png");
+  background-image: url("https://i.postimg.cc/bw5GQTpq/Chat-GPT-Image-1-Pheb-2026-10-06-29-p-m.png");
   background-size: cover;
   background-position: center;
   border-radius: 18px;
@@ -279,7 +279,7 @@ margin: 4px 0;
 @keyframes bounce-fast { 0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)} }
 
 
-/* ===== SNOW ===== */
+/* ===== SNOW =====
 .snow { position:fixed; inset:0; pointer-events:none; z-index:3000; overflow:hidden; }
 .snow .flake {
   position:absolute;
@@ -299,7 +299,7 @@ margin: 4px 0;
   10%{opacity:0.9;}
   100%{transform:translateY(120vh) translateX(30px) rotate(360deg);opacity:0.9;}
 }
-
+ */
 
 /* ===== SOCIAL MODAL ===== */
 .social-modal {
@@ -394,3 +394,4 @@ margin: 4px 0;
 @media (max-width: 420px) {
   .game-board { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
 }
+
