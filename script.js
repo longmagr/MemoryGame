@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
   let selectedPairs = 6;
   let currentImageSet = [];
 
-  function createSnowflakes(num=36){
+  /*function createSnowflakes(num=36){
     snowContainer.innerHTML='';
     for(let i=0;i<num;i++){
       const flake=document.createElement('div');
@@ -45,7 +45,7 @@ window.addEventListener('load', () => {
       snowContainer.appendChild(flake);
     }
   }
-  createSnowflakes(36);
+  createSnowflakes(36);*/
 
   function shuffle(arr){
     const a=arr.slice();
@@ -310,3 +310,4 @@ text.style.fontWeight = link.weight || "";
   // initial render
   renderLinks();
 })();
+
